@@ -5,7 +5,7 @@
 namespace esphome {
 namespace gdoor_esphome {
 
-static const char *TAG = "gdoor_esphome.gdoor_sensor";
+static const char *TAG = "gdoor_esphome.gdoor";
 static const GDOOR_DATA_PROTOCOL gdoor_data_idle(NULL, true);
 
 void GDoorSensor::setup() {

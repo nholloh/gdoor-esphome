@@ -20,7 +20,7 @@
 #include "gdoor_utils.h"
 #include "esphome/core/log.h"
 
-static const char *TAG = "gdoor_esphome.gdoor_sensor";
+static const char *TAG = "gdoor_esphome.gdoor";
 
 namespace GDOOR_RX {
 
@@ -116,25 +116,32 @@ namespace GDOOR_RX {
         retval.len = 0;
         retval.valid = 0;
 
+        int cpuFreqMHz = getCpuFrequencyMhz();
+        unsigned long cpuFreqHz = cpuFreqMHz * 1000000;
+
+        int prescaler = cpuFreqHz / 120000;
+
         // Set bit_received timer frequency to 120kHz
-        timer_bit_received = timerBegin(120000);
+        timer_bit_received = timerBegin(3, prescaler, true);
 
         // Attach isr_timer_bit_received function to bit_received timer.
-        timerAttachInterrupt(timer_bit_received, &isr_timer_bit_received);
+        timerAttachInterrupt(timer_bit_received, &isr_timer_bit_received, true);
 
         // Set alarm to call isr_timer_bit_received function
         // after 20 120kHz Cycles (=10 60kHz Cycles)
-        timerAlarm(timer_bit_received, 20, true, 0);
+        timerAlarmWrite(timer_bit_received, 20, true, 0);
+        timerAlarmEnable(timer_bit_received)
 
         // Set bit_received timer frequency to 120kHz
-        timer_bitstream_received = timerBegin(120000);
+        timer_bitstream_received = timerBegin(2, prescaler, true);
 
         // Attach isr_timer_bit_received function to bit_received timer.
-        timerAttachInterrupt(timer_bitstream_received, &isr_timer_bitstream_received);
+        timerAttachInterrupt(timer_bitstream_received, &isr_timer_bitstream_received, true);
 
         // Set alarm to call isr_timer_bit_received function
         // after 6*STARTBIT_MIN_LEN 120kHz Cycles (= 3 * STARTBIT_MIN_LEN 60kHz Cycles)
-        timerAlarm(timer_bitstream_received, 6*STARTBIT_MIN_LEN, true, 0);
+        timerAlarmWrite(timer_bitstream_received, 6*STARTBIT_MIN_LEN, true, 0);
+        timerAlarmEnable(timer_bitstream_received);
 
         // Enable External RX Interrupt
         enable();
