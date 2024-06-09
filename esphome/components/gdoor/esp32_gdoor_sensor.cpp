@@ -1,6 +1,6 @@
 #include "esphome/core/log.h"
 #include "esp32_gdoor_sensor.h"
-#include "gdoor/gdoor.h"
+#include "gdoor.h"
 
 namespace esphome {
 namespace gdoor_esphome {
