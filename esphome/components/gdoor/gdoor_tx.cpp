@@ -152,7 +152,7 @@ namespace GDOOR_TX {
 
         // Set alarm to call isr_timer_60khz function
         // after 1 60kHz Cycles
-        timerAlarmWrite(timer_60khz, 1, true, 0);
+        timerAlarmWrite(timer_60khz, 1, true);
         timerAlarmEnable(timer_60khz);
         
         pinMode(pin_tx, OUTPUT);

@@ -20,6 +20,8 @@
 #include "gdoor_utils.h"
 #include "esphome/core/log.h"
 
+using esphome::esp_log_printf_;
+
 static const char *TAG = "gdoor_esphome.gdoor";
 
 namespace GDOOR_RX {
@@ -129,8 +131,8 @@ namespace GDOOR_RX {
 
         // Set alarm to call isr_timer_bit_received function
         // after 20 120kHz Cycles (=10 60kHz Cycles)
-        timerAlarmWrite(timer_bit_received, 20, true, 0);
-        timerAlarmEnable(timer_bit_received)
+        timerAlarmWrite(timer_bit_received, 20, true);
+        timerAlarmEnable(timer_bit_received);
 
         // Set bit_received timer frequency to 120kHz
         timer_bitstream_received = timerBegin(2, prescaler, true);
@@ -140,7 +142,7 @@ namespace GDOOR_RX {
 
         // Set alarm to call isr_timer_bit_received function
         // after 6*STARTBIT_MIN_LEN 120kHz Cycles (= 3 * STARTBIT_MIN_LEN 60kHz Cycles)
-        timerAlarmWrite(timer_bitstream_received, 6*STARTBIT_MIN_LEN, true, 0);
+        timerAlarmWrite(timer_bitstream_received, 6*STARTBIT_MIN_LEN, true);
         timerAlarmEnable(timer_bitstream_received);
 
         // Enable External RX Interrupt
