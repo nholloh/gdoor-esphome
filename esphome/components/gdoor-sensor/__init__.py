@@ -3,9 +3,9 @@ import esphome.config_validation as cv
 from esphome.components import text_sensor
 from esphome.const import CONF_ID
 
+DOMAIN = "gdoor-sensor"
+DEPENDENCIES = ['text_sensor']
 MULTI_CONF = False
-
-AUTO_LOAD = ['text_sensor']
 
 gdoor_esphome_ns = cg.esphome_ns.namespace('gdoor_esphome')
 GDoorSensor = gdoor_esphome_ns.class_('GDoorSensor', text_sensor.TextSensor, cg.Component)
