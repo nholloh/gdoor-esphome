@@ -19,6 +19,4 @@ def to_code(config):
     yield text_sensor.register_text_sensor(var, config)
     yield cg.register_component(var, config)
 
-PLATFORM_SCHEMA = CONFIG_SCHEMA
-
-text_sensor.register_platform('gdoor-sensor', PLATFORM_SCHEMA, to_code)
+text_sensor.TextSensor.register_platform('gdoor_sensor', CONFIG_SCHEMA, to_code)
