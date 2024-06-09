@@ -3,7 +3,7 @@ import esphome.config_validation as cv
 from esphome.components import text_sensor
 from esphome.const import CONF_ID
 
-DOMAIN = "gdoor-sensor"
+DOMAIN = "gdoor_sensor"
 DEPENDENCIES = ['text_sensor']
 MULTI_CONF = False
 
