@@ -138,22 +138,16 @@ namespace GDOOR_TX {
         pin_tx = txpin;
         pin_tx_en = txenpin;
 
-        int cpuFreqMHz = getCpuFrequencyMhz();
-        unsigned long cpuFreqHz = cpuFreqMHz * 1000000;
-
-        int prescaler = cpuFreqHz / 60000;
-
         // Set timer_60khz timer frequency to 60kHz
-        timer_60khz = timerBegin(1, prescaler, true);
+        timer_60khz = timerBegin(60000);
         timerStop(timer_60khz);
 
         // Attach isr_timer_60khz function to timer_60khz timer.
-        timerAttachInterrupt(timer_60khz, &isr_timer_60khz, true);
+        timerAttachInterrupt(timer_60khz, &isr_timer_60khz);
 
         // Set alarm to call isr_timer_60khz function
         // after 1 60kHz Cycles
-        timerAlarmWrite(timer_60khz, 1, true);
-        timerAlarmEnable(timer_60khz);
+        timerAlarm(timer_60khz, 1, true, 0);
         
         pinMode(pin_tx, OUTPUT);
         pinMode(pin_tx_en, OUTPUT);
@@ -161,12 +155,11 @@ namespace GDOOR_TX {
         digitalWrite(pin_tx_en, LOW);
         digitalWrite(pin_tx, LOW);
 
-        // Setup PWM subsystem (LEDC) on pin_tx
+        //Setup PWM subsystem (LEDC) on pin_tx
         // We only modulate with 52kHz, as the bandpass
         // manufacturing tolerances are a bit on the lower side.
         // Still works.
-        ledcSetup(0, 52000, 8);
-        ledcAttachPin(pin_tx, 0);
+        ledcAttach(pin_tx, 52000, 8);
         ledcWrite(pin_tx, 0);
 
         stop_timer();
