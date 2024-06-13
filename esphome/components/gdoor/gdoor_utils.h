@@ -22,6 +22,8 @@ namespace GDOOR_UTILS {
     uint8_t crc(uint8_t *words, uint16_t len);
     uint8_t parity_odd(uint8_t word);
 
+    uint16_t divider(uint32_t frequency);
+
     /*
     * Template Function (needs to live in header file),
     * used to print out json hex array.

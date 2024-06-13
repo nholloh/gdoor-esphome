@@ -138,13 +138,8 @@ namespace GDOOR_TX {
         pin_tx = txpin;
         pin_tx_en = txenpin;
 
-        int cpuFreqMHz = getCpuFrequencyMhz();
-        unsigned long cpuFreqHz = cpuFreqMHz * 1000000;
-
-        int prescaler = cpuFreqHz / 60000;
-
         // Set timer_60khz timer frequency to 60kHz
-        timer_60khz = timerBegin(1, prescaler, true);
+        timer_60khz = timerBegin(1, GDOOR_UTILS::divider(60000), true);
         timerStop(timer_60khz);
 
         // Attach isr_timer_60khz function to timer_60khz timer.

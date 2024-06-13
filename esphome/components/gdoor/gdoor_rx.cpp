@@ -118,13 +118,8 @@ namespace GDOOR_RX {
         retval.len = 0;
         retval.valid = 0;
 
-        int cpuFreqMHz = getCpuFrequencyMhz();
-        unsigned long cpuFreqHz = cpuFreqMHz * 1000000;
-
-        int prescaler = cpuFreqHz / 120000;
-
         // Set bit_received timer frequency to 120kHz
-        timer_bit_received = timerBegin(3, prescaler, true);
+        timer_bit_received = timerBegin(3, GDOOR_UTILS::divider(120000), true);
 
         // Attach isr_timer_bit_received function to bit_received timer.
         timerAttachInterrupt(timer_bit_received, &isr_timer_bit_received, true);
@@ -135,7 +130,7 @@ namespace GDOOR_RX {
         timerAlarmEnable(timer_bit_received);
 
         // Set bit_received timer frequency to 120kHz
-        timer_bitstream_received = timerBegin(2, prescaler, true);
+        timer_bitstream_received = timerBegin(2, GDOOR_UTILS::divider(120000), true);
 
         // Attach isr_timer_bit_received function to bit_received timer.
         timerAttachInterrupt(timer_bitstream_received, &isr_timer_bitstream_received, true);
