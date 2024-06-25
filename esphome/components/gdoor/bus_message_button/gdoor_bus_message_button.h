@@ -1,16 +1,18 @@
 #pragma once
 
 #include "esphome/core/component.h"
-#include "esphome/components/text_sensor/text_sensor.h"
+#include "esphome/components/button/button.h"
 
 namespace esphome {
 namespace gdoor_esphome {
 
-class GDoorSensor : public text_sensor::TextSensor, public Component {
+class GDoorBusMessageButton : public GDoorBusMessageButton_P, public button::Button, public Component {
  public:
   void setup() override;
-  void loop() override;
+  void press() override;
   void dump_config() override;
+ protected:
+  String *button_busmessage_;
 };
 
 }  // namespace gdoor_esphome
