@@ -10,11 +10,9 @@ static const char *TAG = "gdoor_esphome.gdoor";
 void GDoor::setup() {
     ESP_LOGI(TAG, "Setting up GDoorSensor");
     
-    // TODO: Make sensitivity configurable.
-    GDOOR::setRxThreshold(PIN_RX_THRESH, RX_SENS_MED_NUM);
+    GDOOR::setRxThreshold(PIN_RX_THRESH, this->rx_pin_threshold_);
 
-    // TODO: Make RX PIN configurable.
-    GDOOR::setup(PIN_TX, PIN_TX_EN, RX_PIN_22_NUM);
+    GDOOR::setup(PIN_TX, PIN_TX_EN, this->rx_pin_);
 
     // Publish initial idle state.
     publish_state(gdoor_data_idle.action);

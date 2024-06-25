@@ -22,6 +22,8 @@ class GDoor : public Component {
  protected:
   void (*onStateUpdateLastReceived)(String);
   void (*onStateUpdateEvent)(String);
+  float_t rx_pin_threshold_;
+  int rx_pin_;
 };
 
 }  // namespace gdoor_esphome

@@ -16,9 +16,9 @@ GDoorBusEvent_P = gdoor_esphome_ns.class_('GDoorBusEvent_P', cg.Parented.templat
 
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(GDoor),
-    cv.Optional(cid.CONF_ID_RX_PIN): cv.gpio_input_pin_schema,
+    cv.Optional(cid.CONF_ID_RX_PIN, default='GPIO22'): cv.gpio_input_pin_schema,
     cv.Optional(cid.CONF_ID_RX_SENSITIVITY, default=1.65): cv.positive_float.validators(cv.Range(min=1.3, max=1.65))
-}).extend(cv.COMPONENT_SCHEMA)
+})
 
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
