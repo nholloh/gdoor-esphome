@@ -15,6 +15,10 @@ AUTO_LOAD = []
 
 gdoor_ns = cg.esphome_ns.namespace('gdoor_esphome')
 Gdoor = gdoor_ns.class_("GDoor", cg.Component)
+GDoorBusMessageButton_P = gdoor_ns.class_('GDoorBusMessageButton_P', cg.Parented.template(Gdoor))
+GDoorLastMessageBusSensor_P = gdoor_ns.class_('GDoorLastMessageBusSensor_P', cg.Parented.template(Gdoor))
+GDoorBusEvent_P = gdoor_ns.class_('GDoorBusEvent_P', cg.Parented.template(Gdoor))
+
 CONF_GDOOR = "gdoor"
 
 CONFIG_SCHEMA = cv.COMPONENT_SCHEMA.extend(
@@ -41,3 +45,5 @@ def data(value):
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
+    cg.add(var.set_rx_pin(config[CONF_RX_PIN]))
+    cg.add(var.set_rx_sensitivity(config[CONF_SENSITIVITY]))
