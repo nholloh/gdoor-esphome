@@ -8,21 +8,21 @@ import config_validation as gdoor_cv
 from .. import (
     GDoor,
     GDoorBusMessageButton_P,
-    CONF_GDOOR_ID,
-    gdoor_esphome_ns
+    CONF_GDOOR,
+    gdoor_ns
 )
 
-GDoorBusMessageButton = gdoor_esphome_ns.class_('GDoorBusMessageButton', GDoorBusMessageButton_P, button.Button, cg.Component)
+GDoorBusMessageButton = gdoor_ns.class_('GDoorBusMessageButton', GDoorBusMessageButton_P, button.Button, cg.Component)
 
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(GDoorBusMessageButton),
-    cv.GenerateID(CONF_GDOOR_ID): cv.use_id(GDoor),
+    cv.GenerateID(CONF_GDOOR): cv.use_id(GDoor),
     cv.Required(cid.CONF_ID_BUTTON_BUSMESSAGE): gdoor_cv.hex_string
 }).extend(button.BUTTON_SCHEMA)
 
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
-    await cg.register_parented(var, config[CONF_GDOOR_ID])
+    await cg.register_parented(var, config[CONF_GDOOR])
     cg.add(var.set_button_busmessage(config[cid.CONF_ID_BUTTON_BUSMESSAGE]))
     await button.register_button(var, config)

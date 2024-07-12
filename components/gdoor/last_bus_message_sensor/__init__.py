@@ -7,19 +7,19 @@ import conf_constants as cid
 from .. import (
     GDoor,
     GDoorLastMessageBusSensor_P,
-    CONF_GDOOR_ID,
-    gdoor_esphome_ns
+    CONF_GDOOR,
+    gdoor_ns
 )
 
-GDoorLastMessageBusSensor = gdoor_esphome_ns.class_('GDoorLastMessageBusSensor', GDoorLastMessageBusSensor_P, text_sensor.TextSensor, cg.Component)
+GDoorLastMessageBusSensor = gdoor_ns.class_('GDoorLastMessageBusSensor', GDoorLastMessageBusSensor_P, text_sensor.TextSensor, cg.Component)
 
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(GDoorLastMessageBusSensor),
-    cv.GenerateID(CONF_GDOOR_ID): cv.use_id(GDoor),
+    cv.GenerateID(CONF_GDOOR): cv.use_id(GDoor),
 }).extend(text_sensor.TEXT_SENSOR_SCHEMA)
 
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
-    await cg.register_parented(var, config[CONF_GDOOR_ID])
+    await cg.register_parented(var, config[CONF_GDOOR])
     await text_sensor.register_text_sensor(var, config)
