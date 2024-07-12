@@ -21,8 +21,9 @@ CONFIG_SCHEMA = button.BUTTON_SCHEMA.extend({
 })
 
 async def to_code(config):
-    var = cg.new_Pvariable(config[CONF_ID])
+    var = cg.new_Pvariable(config[CONF_ID], config[cid.CONF_ID_BUTTON_BUSMESSAGE])
     await cg.register_component(var, config)
+    await button.register_button(var, config)
+
     await cg.register_parented(var, config[CONF_GDOOR])
     cg.add(var.set_button_busmessage(config[cid.CONF_ID_BUTTON_BUSMESSAGE]))
-    await button.register_button(var, config)
