@@ -5,7 +5,7 @@ from esphome.const import CONF_ID
 
 import conf_constants as cid
 from .. import (
-    GDoor,
+    Gdoor,
     GDoorLastMessageBusSensor_P,
     CONF_GDOOR,
     gdoor_ns
@@ -13,10 +13,10 @@ from .. import (
 
 GDoorLastMessageBusSensor = gdoor_ns.class_('GDoorLastMessageBusSensor', GDoorLastMessageBusSensor_P, text_sensor.TextSensor, cg.Component)
 
-CONFIG_SCHEMA = cv.Schema({
+CONFIG_SCHEMA = text_sensor.TEXT_SENSOR_SCHEMA.extend({
     cv.GenerateID(): cv.declare_id(GDoorLastMessageBusSensor),
-    cv.GenerateID(CONF_GDOOR): cv.use_id(GDoor),
-}).extend(text_sensor.TEXT_SENSOR_SCHEMA)
+    cv.GenerateID(CONF_GDOOR): cv.use_id(Gdoor),
+})
 
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])

@@ -6,7 +6,7 @@ from esphome.const import CONF_ID
 import conf_constants as cid
 import config_validation as gdoor_cv
 from .. import (
-    GDoor,
+    Gdoor,
     GDoorBusMessageButton_P,
     CONF_GDOOR,
     gdoor_ns
@@ -14,11 +14,11 @@ from .. import (
 
 GDoorBusMessageButton = gdoor_ns.class_('GDoorBusMessageButton', GDoorBusMessageButton_P, button.Button, cg.Component)
 
-CONFIG_SCHEMA = cv.Schema({
+CONFIG_SCHEMA = button.BUTTON_SCHEMA.extend({
     cv.GenerateID(): cv.declare_id(GDoorBusMessageButton),
-    cv.GenerateID(CONF_GDOOR): cv.use_id(GDoor),
+    cv.GenerateID(CONF_GDOOR): cv.use_id(Gdoor),
     cv.Required(cid.CONF_ID_BUTTON_BUSMESSAGE): gdoor_cv.hex_string
-}).extend(button.BUTTON_SCHEMA)
+})
 
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
