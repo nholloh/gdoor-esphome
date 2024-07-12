@@ -1,7 +1,3 @@
-# BUS
-CONF_ID_RX_SENSITIVITY = 'rx_sensitivity'
-CONF_ID_RX_PIN = 'rx_pin'
-
 # BUTTON
 CONF_ID_BUTTON_BUSMESSAGE = 'button_busmessage'
 
