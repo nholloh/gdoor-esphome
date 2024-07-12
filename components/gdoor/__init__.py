@@ -10,7 +10,7 @@ from esphome.const import (
 MULTI_CONF = True
 CONF_GDOOR_ID = cid.CONF_GDOOR_ID
 
-AUTO_LOAD = ["bus_event", "bus_message_button", "last_bus_message_sensor"]
+AUTO_LOAD = ["button", "text_sensor", "event"]
 
 gdoor_esphome_ns = cg.esphome_ns.namespace('gdoor_esphome')
 GDoor = gdoor_esphome_ns.class_('GDoor', cg.Component)
