@@ -15,7 +15,7 @@ GDoorBusMessageButton_P = gdoor_esphome_ns.class_('GDoorBusMessageButton_P', cg.
 GDoorLastMessageBusSensor_P = gdoor_esphome_ns.class_('GDoorLastMessageBusSensor_P', cg.Parented.template(GDoor))
 GDoorBusEvent_P = gdoor_esphome_ns.class_('GDoorBusEvent_P', cg.Parented.template(GDoor))
 
-CONFIG_SCHEMA = cv.Schema({
+CONFIG_SCHEMA = cv.COMPONENT_SCHEMA.Schema({
     cv.GenerateID(): cv.declare_id(GDoor),
     cv.Optional(cid.CONF_ID_RX_PIN, default='GPIO22'): cv.gpio_input_pin_schema,
     cv.Optional(cid.CONF_ID_RX_SENSITIVITY, default=1.65): cv.positive_float.validators(cv.Range(min=1.3, max=1.65))
