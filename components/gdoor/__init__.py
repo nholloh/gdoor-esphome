@@ -3,12 +3,14 @@ import esphome.config_validation as cv
 from esphome.const import CONF_ID
 import conf_constants as cid
 
-DOMAIN = "gdoor"
-MULTI_CONF = False
+MULTI_CONF = True
 CONF_GDOOR_ID = cid.CONF_GDOOR_ID
+
+AUTO_LOAD = ["bus_event", "bus_message_button", "last_bus_message_sensor"]
 
 gdoor_esphome_ns = cg.esphome_ns.namespace('gdoor_esphome')
 GDoor = gdoor_esphome_ns.class_('GDoor', cg.Component)
+
 GDoorBusMessageButton_P = gdoor_esphome_ns.class_('GDoorBusMessageButton_P', cg.Parented.template(GDoor))
 GDoorLastMessageBusSensor_P = gdoor_esphome_ns.class_('GDoorLastMessageBusSensor_P', cg.Parented.template(GDoor))
 GDoorBusEvent_P = gdoor_esphome_ns.class_('GDoorBusEvent_P', cg.Parented.template(GDoor))

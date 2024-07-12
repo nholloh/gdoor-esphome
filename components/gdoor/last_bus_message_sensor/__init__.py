@@ -7,12 +7,10 @@ import conf_constants as cid
 from .. import (
     GDoor,
     GDoorLastMessageBusSensor_P,
-    CONF_GDOOR_ID
+    CONF_GDOOR_ID,
+    gdoor_esphome_ns
 )
 
-DOMAIN = "gdoor"
-
-gdoor_esphome_ns = cg.esphome_ns.namespace('gdoor_esphome')
 GDoorLastMessageBusSensor = gdoor_esphome_ns.class_('GDoorLastMessageBusSensor', GDoorLastMessageBusSensor_P, text_sensor.TextSensor, cg.Component)
 
 CONFIG_SCHEMA = cv.Schema({

@@ -8,12 +8,10 @@ import config_validation as gdoor_cv
 from .. import (
     GDoor,
     GDoorBusMessageButton_P,
-    CONF_GDOOR_ID
+    CONF_GDOOR_ID,
+    gdoor_esphome_ns
 )
 
-DOMAIN = "gdoor"
-
-gdoor_esphome_ns = cg.esphome_ns.namespace('gdoor_esphome')
 GDoorBusMessageButton = gdoor_esphome_ns.class_('GDoorBusMessageButton', GDoorBusMessageButton_P, button.Button, cg.Component)
 
 CONFIG_SCHEMA = cv.Schema({

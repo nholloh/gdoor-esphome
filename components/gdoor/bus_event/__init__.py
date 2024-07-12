@@ -8,12 +8,10 @@ import config_validation as gdoor_cv
 from .. import (
     GDoor,
     GDoorBusEvent_P,
-    CONF_GDOOR_ID
+    CONF_GDOOR_ID,
+    gdoor_esphome_ns
 )
 
-DOMAIN = "gdoor"
-
-gdoor_esphome_ns = cg.esphome_ns.namespace('gdoor_esphome')
 GDoorBusEvent = gdoor_esphome_ns.class_('GDoorBusEvent', GDoorBusEvent_P, event.Event, cg.Component)
 
 CONFIG_SCHEMA = cv.Schema({
