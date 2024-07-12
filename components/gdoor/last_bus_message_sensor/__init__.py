@@ -16,7 +16,7 @@ GDoorLastMessageBusSensor = gdoor_esphome_ns.class_('GDoorLastMessageBusSensor',
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(GDoorLastMessageBusSensor),
     cv.GenerateID(CONF_GDOOR_ID): cv.use_id(GDoor),
-}).extend(text_sensor.text_sensor_schema)
+}).extend(text_sensor.TEXT_SENSOR_SCHEMA)
 
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])

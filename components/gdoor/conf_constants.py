@@ -9,4 +9,4 @@ CONF_ID_BUTTON_BUSMESSAGE = 'button_busmessage'
 CONF_ID_TEXT_SENSOR_NAME = 'text_sensor_name'
 
 # ID
-CONF_GDOOR_ID = 'gdoor_id'
+CONF_GDOOR_ID = 'gdoor'

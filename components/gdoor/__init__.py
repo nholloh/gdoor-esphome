@@ -4,7 +4,7 @@ from esphome.const import CONF_ID
 import conf_constants as cid
 
 MULTI_CONF = True
-CONF_GDOOR_ID = "gdoor"
+CONF_GDOOR_ID = cid.CONF_GDOOR_ID
 
 AUTO_LOAD = ["bus_event", "bus_message_button", "last_bus_message_sensor"]
 
