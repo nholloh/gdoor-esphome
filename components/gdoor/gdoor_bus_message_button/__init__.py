@@ -6,12 +6,10 @@ from esphome.const import CONF_ID
 from .. import (
     Gdoor,
     CONF_GDOOR,
-    gdoor_ns
+    GDoorBusMessageButton
 )
 
 CONF_ID_BUTTON_BUSMESSAGE='button_busmessage'
-
-GDoorBusMessageButton = gdoor_ns.class_('GDoorBusMessageButton', button.Button, cg.Component)
 
 CONFIG_SCHEMA = button.BUTTON_SCHEMA.extend({
     cv.GenerateID(): cv.declare_id(GDoorBusMessageButton),

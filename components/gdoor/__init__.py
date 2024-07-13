@@ -12,6 +12,7 @@ AUTO_LOAD = ["button", "text_sensor", "event"]
 
 gdoor_ns = cg.esphome_ns.namespace('gdoor_esphome')
 Gdoor = gdoor_ns.class_("GDoor", cg.Component)
+GDoorBusMessageButton = gdoor_ns.class_('GDoorBusMessageButton', button.Button, cg.Component)
 
 CONF_GDOOR = "gdoor"
 CONF_RX_PIN = "rx_pin"
