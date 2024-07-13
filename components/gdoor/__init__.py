@@ -2,12 +2,9 @@ import re
 import esphome.codegen as cg
 import esphome.config_validation as cv
 import esphome.components.button as button
-import conf_constants as cid
 from esphome import pins
 from esphome.const import (
-  CONF_ID,
-  CONF_RX_PIN,
-  CONF_SENSITIVITY,
+  CONF_ID
 )  
 
 MULTI_CONF = True
@@ -18,6 +15,8 @@ Gdoor = gdoor_ns.class_("GDoor", cg.Component)
 GDoorBusMessageButton = gdoor_ns.class_('GDoorBusMessageButton', button.Button, cg.Component)
 
 CONF_GDOOR = "gdoor"
+CONF_RX_PIN = "rx_pin"
+CONF_SENSITIVITY = "sensitivity"
 
 CONFIG_SCHEMA = cv.COMPONENT_SCHEMA.extend(
     {
