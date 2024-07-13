@@ -12,7 +12,6 @@ AUTO_LOAD = ["button", "text_sensor", "event"]
 
 gdoor_ns = cg.esphome_ns.namespace('gdoor_esphome')
 Gdoor = gdoor_ns.class_("GDoor", cg.Component)
-GDoorBusMessageButton = gdoor_ns.class_('GDoorBusMessageButton', button.Button, cg.Component)
 
 CONF_GDOOR = "gdoor"
 CONF_RX_PIN = "rx_pin"
@@ -25,19 +24,6 @@ CONFIG_SCHEMA = cv.COMPONENT_SCHEMA.extend(
         cv.Optional(CONF_SENSITIVITY, default=1.65): cv.float_range(min=1.3, max=1.65),
     }
 )
-
-data_validation_list = []
-
-def data(value):
-  value = cv.string_strict(value).lower()
-  if re.match("^([0-9a-f]{2})+$", value):
-    if value in data_validation_list:
-      raise cv.Invalid('data field must be a unique frame value')
-    else:
-      data_validation_list.append(value)
-      return value
-  else:
-    raise cv.Invalid('data must be a hex byte representation, see https://gdoor-org.github.io/documentation/protocol.html for details')
 
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
