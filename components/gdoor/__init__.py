@@ -2,7 +2,7 @@ import re
 import esphome.codegen as cg
 import esphome.config_validation as cv
 import esphome.components.button as button
-
+import conf_constants as cid
 from esphome import pins
 from esphome.const import (
   CONF_ID,
