@@ -22,7 +22,7 @@ CONF_GDOOR = "gdoor"
 CONFIG_SCHEMA = cv.COMPONENT_SCHEMA.extend(
     {
         cv.GenerateID(): cv.declare_id(Gdoor),
-        cv.Optional(CONF_RX_PIN, default='GPIO22'): pins.gpio_input_pin_schema,
+        cv.Optional(CONF_RX_PIN): pins.gpio_input_pin_schema,
         cv.Optional(CONF_SENSITIVITY, default=1.65): cv.float_range(min=1.3, max=1.65),
     }
 )
