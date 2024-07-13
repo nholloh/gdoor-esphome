@@ -6,9 +6,12 @@
 namespace esphome {
 namespace gdoor_esphome {
 
-class GDoorBusMessageButton : public GDoorBusEvent_P, public event::Event, public Component {
+class GDoorBusMessageButton : public event::Event, public Component {
  public:
   void setup() override;
+  void set_parent(GDoor *parent) { this->parent_ = parent; }
+ protected:
+  GDoor *parent_;
 };
 
 }  // namespace gdoor_esphome

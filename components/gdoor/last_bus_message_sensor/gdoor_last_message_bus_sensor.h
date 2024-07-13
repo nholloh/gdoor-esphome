@@ -6,9 +6,12 @@
 namespace esphome {
 namespace gdoor_esphome {
 
-class GDoorLastMessageBusSensor : public GDoorLastMessageBusSensor_P, public text_sensor::TextSensor, public Component {
+class GDoorLastMessageBusSensor : public text_sensor::TextSensor, public Component {
  public:
   void setup() override;
+  void set_parent(GDoor *parent) { this->parent_ = parent; }
+ protected:
+  GDoor *parent_;
 };
 
 }  // namespace gdoor_esphome
